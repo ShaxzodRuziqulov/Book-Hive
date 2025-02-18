@@ -1,4 +1,4 @@
-![Uploading image.png…]()
+![Logo](https://github.com/ShaxzodRuziqulov/Book-Hive/blob/main/DALL%C2%B7E%202025-02-18%2019.49.06%20-%20A%20modern%20and%20minimalistic%20logo%20design%20for%20_BookHive._%20The%20logo%20should%20incorporate%20a%20stylized%20open%20book%20with%20a%20subtle%20beehive%20or%20honeycomb%20pattern%20inte.webp?raw=true)
 
 
 # BookHive
