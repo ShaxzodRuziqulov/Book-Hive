@@ -1,3 +1,6 @@
+![Uploading image.png…]()
+
+
 # BookHive
 
 BookHive - bu onlayn kitob do'koni uchun ishlab chiqilgan backend loyihasi bo'lib, foydalanuvchilarga kitoblarni sotib olish, buyurtma berish va boshqarish imkoniyatini taqdim etadi.
