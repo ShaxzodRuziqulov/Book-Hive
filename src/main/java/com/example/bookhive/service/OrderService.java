@@ -32,31 +32,21 @@ public class OrderService {
         this.customerRepository = customerRepository;
     }
 
-    public OrderDto create(@Valid OrderDto orderDto) {
-        Customer customer = customerRepository.findById(orderDto.getCustomerId())
-                .orElseThrow(() -> new EntityNotFoundException("Mijoz topilmadi: " + orderDto.getCustomerId()));
+    public OrderDto create(OrderDto orderDto) {
+        Order order = orderMapper.toEntity(orderDto);
 
-        List<Book> books = bookRepository.findAllById(orderDto.getBookIds());
-        if (books.isEmpty()) {
-            throw new EntityNotFoundException("Hech qanday kitob topilmadi");
-        }
-
-        double totalOrderPrice = books.stream()
-                .mapToDouble(Book::getPrice)
-                .sum();
-
-        for (Book book : books) {
+        for (Book book : order.getBooks()) {
             if (book.getQuantityInStock() < 1) {
-                throw new IllegalStateException("Kitob omborda yetarli emas: " + book.getTitle());
+                throw new RuntimeException("Kitob stokda mavjud emas: " + book.getTitle());
             }
             book.setQuantityInStock(book.getQuantityInStock() - 1);
         }
 
-        customer.setTotalPurchasesAmount(customer.getTotalPurchasesAmount() + totalOrderPrice);
+        Customer customer = order.getCustomer();
+        double totalAmount = order.getBooks().stream().mapToDouble(Book::getPrice).sum();
+        customer.setTotalPurchasesAmount(customer.getTotalPurchasesAmount() + totalAmount);
 
-        Order order = orderMapper.toEntity(orderDto);
         order = orderRepository.save(order);
-
         return orderMapper.toDto(order);
     }
 

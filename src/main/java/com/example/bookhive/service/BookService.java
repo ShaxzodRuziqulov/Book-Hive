@@ -51,5 +51,13 @@ public class BookService {
                 .orElseThrow(() -> new EntityNotFoundException("Book not found: " + id));
         bookRepository.delete(book);
     }
+    public BookDto updateStock(Long bookId, int quantity) {
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new EntityNotFoundException("Book not found: " + bookId));
 
+        book.setQuantityInStock(book.getQuantityInStock() + quantity);
+        bookRepository.save(book);
+
+        return bookMapper.toDto(book);
+    }
 }

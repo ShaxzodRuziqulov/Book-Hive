@@ -54,5 +54,12 @@ public class BookResource {
         bookService.delete(id);
         return ResponseEntity.ok().body("Book deleted successfully: " + id);
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateStock(@RequestBody BookDto bookDto, @PathVariable int id) {
+
+        BookDto result = bookService.updateStock(bookDto.getId(), id);
+        return ResponseEntity.ok().body(result);
+    }
 }
 
