@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/BookHive
+    username: postgres
+    password: 123
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update                             # Hibernate uchun DDL avtomatik yangilanishi
+    show-sql: true                                 # SQL so'rovlarini konsolga chiqarish
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+security:
+  jwt:
+    secret-key: ymanDxgNwmCoYxrg7SWawCN8hbyBWz/ZSalfMmhJspk=
+    expiration-time: 2628000000
+    refresh-expiration-time: 864000000
